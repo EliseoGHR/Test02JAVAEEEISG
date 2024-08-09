@@ -37,11 +37,7 @@ public class OrdenController {
         int pageSize = size.orElse(5); // tamaño de la página, se asigna 5
         Pageable pageable = PageRequest.of(currentPage, pageSize);
 
-
-
         Page<OrdenEISG> ordenes = ordenService.buscarTodosPaginados(pageable);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        ordenes.forEach(ordenEISG -> ordenEISG.setFormattedFechaEISG(ordenEISG.getFechaEISG().format(formatter)));
         model.addAttribute("ordenes", ordenes);
 
         int totalPages = ordenes.getTotalPages();
@@ -69,26 +65,26 @@ public class OrdenController {
         }
 
         ordenService.crearOEditar(ordenEISG);
-        attributes.addFlashAttribute("msg", "Orden creada correctamente");
+        attributes.addFlashAttribute("msg", "Orden creada/modificada correctamente");
         return "redirect:/ordenes";
     }
 
     @GetMapping("/details/{id}")
-    public String details(@PathVariable("id") Integer id, Model model){
+    public String details(@PathVariable("id") Long id, Model model){
         OrdenEISG ordenEISG = ordenService.buscarPorId(id).get();
         model.addAttribute("orden", ordenEISG);
         return "orden/details";
     }
 
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable("id") Integer id, Model model){
+    public String edit(@PathVariable("id") Long id, Model model){
         OrdenEISG ordenEISG = ordenService.buscarPorId(id).get();
         model.addAttribute("orden", ordenEISG);
         return "orden/edit";
     }
 
     @GetMapping("/remove/{id}")
-    public String remove(@PathVariable("id") Integer id, Model model){
+    public String remove(@PathVariable("id") Long id, Model model){
         OrdenEISG ordenEISG = ordenService.buscarPorId(id).get();
         model.addAttribute("orden", ordenEISG);
         return "orden/delete";

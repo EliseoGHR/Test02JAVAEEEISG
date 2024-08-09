@@ -1,5 +1,6 @@
 package com.example.Test02JAVAEEEISG.modelos;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -17,35 +18,24 @@ import jakarta.validation.constraints.NotNull;
 public class OrdenEISG {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @NotNull(message = "La fecha es requerida")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate fechaEISG;
+    private Date fecha;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public LocalDate getFechaEISG() {
-        return fechaEISG;
+    public @NotNull(message = "La fecha es requerida") Date getFecha() {
+        return fecha;
     }
 
-    public void setFechaEISG(LocalDate fechaEISG) {
-        this.fechaEISG = fechaEISG;
+    public void setFecha(@NotNull(message = "La fecha es requerida") Date fecha) {
+        this.fecha = fecha;
     }
-    private String formattedFechaEISG;
-
-    public String getFormattedFechaEISG() {
-        return formattedFechaEISG;
-    }
-
-    public void setFormattedFechaEISG(String formattedFechaEISG) {
-        this.formattedFechaEISG = formattedFechaEISG;
-    }
-
 }

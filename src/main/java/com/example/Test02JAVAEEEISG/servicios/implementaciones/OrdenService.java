@@ -28,8 +28,8 @@ public class OrdenService implements IOrdenService{
     }
 
     @Override
-    public Optional<OrdenEISG> buscarPorId(Integer id) {
-        return ordenRepository.findById(id);
+    public Optional<OrdenEISG> buscarPorId(Long id) {
+        return ordenRepository.findById(id.intValue());
     }
 
     @Override
@@ -38,7 +38,7 @@ public class OrdenService implements IOrdenService{
     }
 
     @Override
-    public void eliminarPorId(Integer id) {
-        ordenRepository.deleteById(id);
+    public void eliminarPorId(Long id) {
+        ordenRepository.deleteById(id.intValue());
     }
 }

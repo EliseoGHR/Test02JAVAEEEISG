@@ -13,9 +13,9 @@ public interface IOrdenService {
 
     List<OrdenEISG> obtenerTodos();
 
-    Optional<OrdenEISG> buscarPorId(Integer id);
+    Optional<OrdenEISG> buscarPorId(Long id);
 
     OrdenEISG crearOEditar(OrdenEISG ordenEISG);
 
-    void eliminarPorId(Integer id);
+    void eliminarPorId(Long id);
 }

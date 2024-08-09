@@ -59,7 +59,7 @@ public class ProductoController {
         }
 
         productoService.crearOEditar(productoEISG);
-        attributes.addFlashAttribute("msg", "Producto creado correctamente");
+        attributes.addFlashAttribute("msg", "Producto creado/modificado correctamente");
         return "redirect:/productos";
     }
 
