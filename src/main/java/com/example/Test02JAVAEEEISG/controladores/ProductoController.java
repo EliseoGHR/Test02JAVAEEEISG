@@ -25,19 +25,16 @@ import java.util.stream.IntStream;
 public class ProductoController {
     @Autowired
     private IProductoService productoService;
-
     @GetMapping
     public String index(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size){
         int currentPage = page.orElse(1) - 1; // si no está seteado se asigna 0
         int pageSize = size.orElse(5); // tamaño de la página, se asigna 5
         Pageable pageable = PageRequest.of(currentPage, pageSize);
 
+        Page<ProductoEISG> productoEISGS = productoService.buscarTodosPaginados(pageable);
+        model.addAttribute("productos", productoEISGS);
 
-
-        Page<ProductoEISG> productos = productoService.buscarTodosPaginados(pageable);
-        model.addAttribute("productos", productos);
-
-        int totalPages = productos.getTotalPages();
+        int totalPages = productoEISGS.getTotalPages();
         if (totalPages > 0) {
             List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
                     .boxed()
@@ -54,7 +51,7 @@ public class ProductoController {
     }
 
     @PostMapping("/save")
-    public String save(@Valid ProductoEISG productoEISG, BindingResult result, Model model, RedirectAttributes attributes){
+    public String save(ProductoEISG productoEISG, BindingResult result, Model model, RedirectAttributes attributes){
         if(result.hasErrors()){
             model.addAttribute(productoEISG);
             attributes.addFlashAttribute("error", "No se pudo guardar debido a un error.");

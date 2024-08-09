@@ -1,36 +1,48 @@
-<!DOCTYPE html>
+
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="/layouts/_mainLayout">
 
-
-    <div layout:fragment="content" class="container mt-5">
-        <h1 class="mb-4">Crear Nuevo Producto</h1>
-        <hr>
-        <div class="card shadow-sm">
-            <div class="card-body">
-                <form th:action="@{/productos/save}" th:object="${productoEISG}" method="post">
-                    <div class="row">
-                        <div class="col-md-12 mb-3">
-                            <div class="form-group">
-                                <label for="nombre">Nombre<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" th:field="*{nombreEISG}" id="nombre" placeholder="Escriba el nombre del producto" required>
-                                <div th:if="${#fields.hasErrors('nombreEISG')}" class="alert alert-danger mt-2">
-                                    <span th:each="err : ${#fields.errors('nombreEISG')}" th:text="${err}"></span>
-                                </div>
+<div layout:fragment="content" class="container mt-5">
+    <h1>Crear nuevo producto</h1>
+    <hr>
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <form th:action="@{/productos/save}" th:object="${productoEISG}" method="post">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="nombreEISG">Nombre<span style="color:red;">*</span></label>
+                            <input type="text" class="form-control" th:field="*{nombreEISG}" id="nombreEISG" placeholder="Escriba el nombre del producto" required>
+                            <div th:if="${#fields.hasErrors('nombreEISG')}" class="alert alert-danger">
+                                <span th:each="err : ${#fields.errors('nombreEISG')}" th:text="${err}"></span>
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="card-footer text-right">
-                <button type="submit" class="btn btn-outline-primary btn-block">Guardar</button>
-                <a th:href="@{/productos}" class="btn btn-outline-secondary btn-block">Regresar</a>
-            </div>
-            
+
+                </div>
+                <div class="row" style="padding: 15px">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-outline-primary" style="width: 100%">Guardar</button>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <a th:href="@{/productos}" class="btn btn-outline-secondary" style="width: 100%">Regresar</a>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </form>
         </div>
+
     </div>
 
 
-</html>
+</div>

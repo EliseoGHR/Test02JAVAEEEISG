@@ -9,7 +9,7 @@ import org.springframework.data.domain.Pageable;
 import com.example.Test02JAVAEEEISG.modelos.ProductoEISG;
 
 public interface IProductoService {
-     Page<ProductoEISG> buscarTodosPaginados(Pageable pageable);
+    Page<ProductoEISG> buscarTodosPaginados(Pageable pageable);
 
     List<ProductoEISG> obtenerTodos();
 
