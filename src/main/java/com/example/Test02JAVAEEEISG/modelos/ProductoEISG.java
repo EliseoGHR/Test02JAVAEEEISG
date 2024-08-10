@@ -19,7 +19,7 @@ public class ProductoEISG {
     @NotBlank(message = "El nombre es requerido")
     private String nombreEISG;
 
-    @OneToMany(mappedBy = "productoEISG")
+    @OneToMany(mappedBy = "productoEISG", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<DetalleOrdenEISG> detalleOrdenes = new HashSet<>();
 
     public Set<DetalleOrdenEISG> getDetalleOrdenes() {

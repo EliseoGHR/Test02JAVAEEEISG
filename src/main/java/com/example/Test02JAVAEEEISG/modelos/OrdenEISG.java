@@ -21,7 +21,7 @@ public class OrdenEISG {
     @NotNull(message = "La fecha es requerida")
     private Date fecha;
 
-    @OneToMany(mappedBy = "ordenEISG")
+    @OneToMany(mappedBy = "ordenEISG", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<DetalleOrdenEISG> detalleOrdenes = new HashSet<>();
 
     public Set<DetalleOrdenEISG> getDetalleOrdenes() {
