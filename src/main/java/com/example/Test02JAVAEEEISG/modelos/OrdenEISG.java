@@ -2,15 +2,13 @@ package com.example.Test02JAVAEEEISG.modelos;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
+import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -22,6 +20,17 @@ public class OrdenEISG {
 
     @NotNull(message = "La fecha es requerida")
     private Date fecha;
+
+    @OneToMany(mappedBy = "ordenEISG")
+    private Set<DetalleOrdenEISG> detalleOrdenes = new HashSet<>();
+
+    public Set<DetalleOrdenEISG> getDetalleOrdenes() {
+        return detalleOrdenes;
+    }
+
+    public void setDetalleOrdenes(Set<DetalleOrdenEISG> detalleOrdenes) {
+        this.detalleOrdenes = detalleOrdenes;
+    }
 
     public Long getId() {
         return id;

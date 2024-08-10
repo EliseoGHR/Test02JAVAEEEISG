@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "productos")
 public class ProductoEISG {
@@ -15,6 +18,17 @@ public class ProductoEISG {
 
     @NotBlank(message = "El nombre es requerido")
     private String nombreEISG;
+
+    @OneToMany(mappedBy = "productoEISG")
+    private Set<DetalleOrdenEISG> detalleOrdenes = new HashSet<>();
+
+    public Set<DetalleOrdenEISG> getDetalleOrdenes() {
+        return detalleOrdenes;
+    }
+
+    public void setDetalleOrdenes(Set<DetalleOrdenEISG> detalleOrdenes) {
+        this.detalleOrdenes = detalleOrdenes;
+    }
 
     public Integer getId() {
         return id;
