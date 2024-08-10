@@ -20,10 +20,12 @@ public class DetalleOrdenEISG {
     @JoinColumn(name = "producto_id")
     private ProductoEISG productoEISG;
 
-    @NotNull(message = "La existencia es requerida")
+    @NotNull(message = "La cantidad es requerida")
+    @Positive(message = "La cantidad no puede ser de 0")
     private int cantidadEISG;
 
     @NotNull(message = "El precio es requerido")
+    @Positive(message = "El precio no puede ser de 0")
     private double precioEISG;
 
     public Long getId() {

@@ -51,7 +51,7 @@ public class ProductoController {
     }
 
     @PostMapping("/save")
-    public String save(ProductoEISG productoEISG, BindingResult result, Model model, RedirectAttributes attributes){
+    public String save(@Valid @ModelAttribute("productoEISG") ProductoEISG productoEISG, BindingResult result, Model model, RedirectAttributes attributes){
         if(result.hasErrors()){
             model.addAttribute(productoEISG);
             attributes.addFlashAttribute("error", "No se pudo guardar debido a un error.");

@@ -4,6 +4,7 @@ import com.example.Test02JAVAEEEISG.modelos.DetalleOrdenEISG;
 import com.example.Test02JAVAEEEISG.servicios.interfaces.IDetalleOrdenService;
 import com.example.Test02JAVAEEEISG.servicios.interfaces.IOrdenService;
 import com.example.Test02JAVAEEEISG.servicios.interfaces.IProductoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -59,7 +60,7 @@ public class DetalleOrdenController {
     }
 
     @PostMapping("/save")
-    public String save(DetalleOrdenEISG detalleOrdenEISG, BindingResult result, Model model, RedirectAttributes attributes){
+    public String save(@Valid @ModelAttribute("detalleOrdenEISG") DetalleOrdenEISG detalleOrdenEISG, BindingResult result, Model model, RedirectAttributes attributes){
         if(result.hasErrors()){
             model.addAttribute(detalleOrdenEISG);
             model.addAttribute("productos", productoService.obtenerTodos());
